@@ -14,25 +14,33 @@ class GameManager {
     this.setup();
   }
 
-  // Restart the game
+  /**
+   * Restart the game.
+   */
   restart() {
     this.storageManager.clearGameState();
     this.actuator.continueGame(); // Clear the game won/lost message
     this.setup();
   }
 
-  // Keep playing after winning (allows going over 2048)
+  /**
+   * Keep playing after winning (allows going over 2048).
+   */
   keepPlaying() {
     this.keepPlaying = true;
     this.actuator.continueGame(); // Clear the game won/lost message
   }
 
-  // Return true if the game is lost, or has won and the user hasn't kept playing
+  /**
+   * Return true if the game is lost, or has won and the user hasn't kept playing.
+   */
   isGameTerminated() {
     return this.over || (this.won && !this.keepPlaying);
   }
 
-  // Set up the game
+  /**
+   * Set up the game.
+   */
   setup() {
     var previousState = this.storageManager.getGameState();
 
@@ -59,14 +67,18 @@ class GameManager {
     this.actuate();
   }
 
-  // Set up the initial tiles to start the game with
+  /**
+   * Set up the initial tiles to start the game with
+   */
   addStartTiles() {
     for (var i = 0; i < this.startTiles; i++) {
       this.addRandomTile();
     }
   }
 
-  // Adds a tile in a random position
+  /**
+   * Adds a tile in a random position
+   */
   addRandomTile() {
     if (this.grid.cellsAvailable()) {
       var value = Math.random() < 0.9 ? 2 : 4;
@@ -76,7 +88,9 @@ class GameManager {
     }
   }
 
-  // Sends the updated grid to the actuator
+  /**
+   * Sends the updated grid to the actuator
+   */
   actuate() {
     if (this.storageManager.getBestScore() < this.score) {
       this.storageManager.setBestScore(this.score);
@@ -98,7 +112,9 @@ class GameManager {
     });
   }
 
-  // Represent the current game as an object
+  /**
+   * Represent the current game as an object
+   */
   serialize() {
     return {
       grid: this.grid.serialize(),
@@ -109,7 +125,9 @@ class GameManager {
     };
   }
 
-  // Save all tile positions and remove merger info
+  /**
+   * Save all tile positions and remove merger info
+   */
   prepareTiles() {
     this.grid.eachCell(function (x, y, tile) {
       if (tile) {
@@ -119,14 +137,18 @@ class GameManager {
     });
   }
 
-  // Move a tile and its representation
+  /**
+   * Move a tile and its representation
+   */
   moveTile(tile, cell) {
     this.grid.cells[tile.x][tile.y] = null;
     this.grid.cells[cell.x][cell.y] = tile;
     tile.updatePosition(cell);
   }
 
-  // Move tiles on the grid in the specified direction
+  /**
+   * Move tiles on the grid in the specified direction
+   */
   move(direction) {
     // 0: up, 1: right, 2: down, 3: left
     var self = this;
@@ -189,7 +211,9 @@ class GameManager {
     }
   }
 
-  // Get the vector representing the chosen direction
+  /**
+   * Get the vector representing the chosen direction.
+   */
   getVector(direction) {
     // Vectors representing tile movement
     var map = {
@@ -202,7 +226,9 @@ class GameManager {
     return map[direction];
   }
 
-  // Build a list of positions to traverse in the right order
+  /**
+   * Build a list of positions to traverse in the right order.
+   */
   buildTraversals(vector) {
     var traversals = { x: [], y: [] };
 
@@ -238,7 +264,9 @@ class GameManager {
     return this.grid.cellsAvailable() || this.tileMatchesAvailable();
   }
 
-  // Check for available matches between tiles (more expensive check)
+  /**
+   * Check for available matches between tiles (more expensive check)
+   */
   tileMatchesAvailable() {
     var self = this;
 

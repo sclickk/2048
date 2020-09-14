@@ -4,7 +4,9 @@ class Grid {
     this.cells = previousState ? this.fromState(previousState) : this.empty();
   }
 
-  // Build a grid of the specified size
+  /**
+   * Build a grid of the specified size
+   */
   empty() {
     var cells = [];
 
@@ -34,7 +36,9 @@ class Grid {
     return cells;
   }
 
-  // Find the first available random position
+  /**
+   * Find the first available random position.
+   */
   randomAvailableCell() {
     var cells = this.availableCells();
 
@@ -55,7 +59,9 @@ class Grid {
     return cells;
   }
 
-  // Call callback for every cell
+  /**
+   * Call callback for every cell.
+   */
   eachCell(callback) {
     for (var x = 0; x < this.size; x++) {
       for (var y = 0; y < this.size; y++) {
@@ -64,12 +70,16 @@ class Grid {
     }
   }
 
-  // Check if there are any cells available
+  /**
+   * Check if there are any cells available.
+   */
   cellsAvailable() {
     return !!this.availableCells().length;
   }
 
-  // Check if the specified cell is taken
+  /**
+   * Check if the specified cell is taken.
+   */
   cellAvailable(cell) {
     return !this.cellOccupied(cell);
   }
@@ -82,7 +92,9 @@ class Grid {
     return this.withinBounds(cell) ? this.cells[cell.x][cell.y] : null;
   }
 
-  // Inserts a tile at its position
+  /**
+   * Inserts a tile at its position.
+   */
   insertTile(tile) {
     this.cells[tile.x][tile.y] = tile;
   }

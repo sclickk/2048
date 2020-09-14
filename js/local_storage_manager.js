@@ -40,7 +40,9 @@ class LocalStorageManager {
     }
   }
 
-  // Best score getters/setters
+  /**
+   * Best score getters/setters.
+   */
   getBestScore() {
     return this.storage.getItem(this.bestScoreKey) || 0;
   }
@@ -49,7 +51,9 @@ class LocalStorageManager {
     this.storage.setItem(this.bestScoreKey, score);
   }
 
-  // Game state getters/setters and clearing
+  /**
+   * Game state getters/setters and clearing.
+   */
   getGameState() {
     var stateJSON = this.storage.getItem(this.gameStateKey);
     return stateJSON ? JSON.parse(stateJSON) : null;

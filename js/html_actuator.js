@@ -36,7 +36,9 @@ class HTMLActuator {
     });
   }
 
-  // Continues the game (both restart and keep playing)
+  /**
+   * Continues the game (both restart and keep playing).
+   */
   continueGame() {
     this.clearMessage();
   }
