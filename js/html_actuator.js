@@ -44,9 +44,7 @@ class HTMLActuator {
   }
 
   clearContainer(container) {
-    while (container.firstChild) {
-      container.removeChild(container.firstChild);
-    }
+    while (container.firstChild) container.removeChild(container.firstChild);
   }
 
   addTile(tile) {
@@ -58,7 +56,7 @@ class HTMLActuator {
     var positionClass = this.positionClass(position);
 
     // We can't use classlist because it somehow glitches when replacing classes
-    var classes = ["tile", "tile-" + tile.value, positionClass];
+    var classes = ["tile", `tile-${tile.value}`, positionClass];
 
     if (tile.value > 2048)
       classes.push("tile-super");
