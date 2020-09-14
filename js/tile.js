@@ -8,6 +8,9 @@ class Tile {
     this.mergedFrom = null; // Tracks tiles that merged together
   }
 
+  /**
+   * Saves the position of the tile.
+   */
   savePosition() {
     this.previousPosition = { x: this.x, y: this.y };
   }
