@@ -13,9 +13,7 @@ class Grid {
     for (var x = 0; x < this.size; x++) {
       var row = cells[x] = [];
 
-      for (var y = 0; y < this.size; y++) {
-        row.push(null);
-      }
+      for (var y = 0; y < this.size; y++) row.push(null);
     }
 
     return cells;
@@ -41,19 +39,14 @@ class Grid {
    */
   randomAvailableCell() {
     var cells = this.availableCells();
-
-    if (cells.length) {
-      return cells[Math.floor(Math.random() * cells.length)];
-    }
+    if (cells.length) return cells[Math.floor(Math.random() * cells.length)];
   }
 
   availableCells() {
     var cells = [];
 
     this.eachCell(function (x, y, tile) {
-      if (!tile) {
-        cells.push({ x: x, y: y });
-      }
+      if (!tile) cells.push({ x: x, y: y });
     });
 
     return cells;

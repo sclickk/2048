@@ -68,12 +68,10 @@ class GameManager {
   }
 
   /**
-   * Set up the initial tiles to start the game with
+   * Set up the initial tiles to start the game with.
    */
   addStartTiles() {
-    for (var i = 0; i < this.startTiles; i++) {
-      this.addRandomTile();
-    }
+    for (var i = 0; i < this.startTiles; i++) this.addRandomTile();
   }
 
   /**
@@ -204,9 +202,7 @@ class GameManager {
 
     if (moved) {
       this.addRandomTile();
-
       if (!this.movesAvailable()) this.over = true; // Game over!
-
       this.actuate();
     }
   }

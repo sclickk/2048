@@ -16,9 +16,7 @@ class HTMLActuator {
 
       grid.cells.forEach(function (column) {
         column.forEach(function (cell) {
-          if (cell) {
-            self.addTile(cell);
-          }
+          if (cell) self.addTile(cell);
         });
       });
 
