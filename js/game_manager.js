@@ -283,8 +283,10 @@ class GameManager {
 
             var other = self.grid.cellContent(cell);
 
-            // These two tiles can be merged
-            return other && other.value === tile.value;
+            // These two tiles can be merged.
+            if (other && other.value === tile.value) {
+              return true;
+            }
           }
         }
       }
